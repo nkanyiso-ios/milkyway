@@ -18,12 +18,12 @@ struct Collection: Codable {
 // MARK: - Item
 struct Item: Codable {
     let href: String
-    let data: [itemData]
+    let data: [ItemData]
     let links: [ItemLink]
 }
 
 // MARK: - itemData
-struct itemData: Codable {
+struct ItemData: Codable {
     let itemDescription, nasaID: String
     let mediaType: MediaType
     let title: String

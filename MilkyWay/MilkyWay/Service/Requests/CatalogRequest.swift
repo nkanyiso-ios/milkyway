@@ -7,7 +7,7 @@ struct GetAllCatalogImagesRequest: Request {
     typealias Response = CatalogResponse
     
     var method: HTTPMethod { return .GET }
-    var path: String { return "/search?q=" }
+    var path: String { return "/search?q=''" }
     var contentType: String { return "application/json" }
     var additionalHeaders: [String : String] { return [:] }
     var body: Data? { return nil }
