@@ -21,7 +21,7 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = NSLocalizedString("Home title", comment: "")
+        self.title = NSLocalizedString("The Milky Way", comment: "")
         viewModel.getCatalogImage()
         observeViewModelState()
     }
