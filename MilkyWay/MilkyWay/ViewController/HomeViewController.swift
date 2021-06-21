@@ -17,6 +17,7 @@ class HomeViewController: UIViewController {
     
     private lazy var viewModel = HomeViewModel()
     private var cancellable: AnyCancellable?
+    private var imagecancell: Set<AnyCancellable> = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,16 +54,31 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         guard  let cell = catalogTable.dequeueReusableCell(withIdentifier: "catalogCell") as? CatalogCell else { return UITableViewCell() }
         
         if let itemData = viewModel.catalogFor(indexPath.row)?.data[0]{
-            
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = App.dateFormat
-            cell.title.text = itemData.title
-            cell.nameDate.text = (itemData.photographer ?? "") + " | " + dateFormatter.string(from: itemData.dateCreated)
+            bind(to: itemData,cell: cell)
         }
-        
+        if let urlString =  viewModel.catalogFor(indexPath.row)?.links[0].href {
+            guard let url = URL(string: urlString) else {
+                return cell
+            }
+            viewModel.laodImage(imageUrl: url).sink(receiveValue: { image in
+                if (image != nil){
+                    DispatchQueue.main.async {
+                        
+                        cell.thumbnail.image = image
+                    }
+                }
+            }).store(in: &imagecancell)
+        }
         return cell
     }
     
+    func bind(to catalogImageData: ItemData, cell: CatalogCell) {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = App.dateFormat
+        cell.title.text = catalogImageData.title
+        cell.nameDate.text = (catalogImageData.photographer ?? "") + " | " + dateFormatter.string(from: catalogImageData.dateCreated)
+    }
     
 }
 

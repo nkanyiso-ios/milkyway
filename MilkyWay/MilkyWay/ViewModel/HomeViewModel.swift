@@ -1,5 +1,6 @@
 
 import Combine
+import UIKit.UIImage
 
 class HomeViewModel: ObservableObject {
     // MARK:- Private properties
@@ -7,6 +8,7 @@ class HomeViewModel: ObservableObject {
     private var subscriptions: Set<AnyCancellable> = []
     private let client = Client()
     private var searchResults: CatalogResponse?
+    private var imageLoader: ImageLoaderService = ImageLoaderService()
     
     
     @Published var state = State.idle
@@ -31,6 +33,9 @@ class HomeViewModel: ObservableObject {
             .store(in: &subscriptions)
     }
     
+    func laodImage(imageUrl: URL)-> AnyPublisher<UIImage?, Never> {
+        return self.imageLoader.loadImage(from: imageUrl)
+    }
     // MARK: - Internal/Exposure functions
     
     func catalogCount() -> Int { searchResults?.collection?.items.count ?? 0 }

@@ -8,5 +8,5 @@ class CatalogCell: UITableViewCell {
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var nameDate: UILabel!
     
-    
+
 }
