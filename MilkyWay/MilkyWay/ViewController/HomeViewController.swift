@@ -5,7 +5,7 @@ import Combine
 class HomeViewController: UIViewController {
     
     // MARK: - Outlet(s)
-    @IBOutlet weak var catalogTable: UITableView! {
+    @IBOutlet private weak var catalogTable: UITableView! {
         didSet {
             catalogTable.dataSource = self
             catalogTable.delegate = self
@@ -14,7 +14,6 @@ class HomeViewController: UIViewController {
     }
     
     // MARK: - Private properties
-    
     private lazy var viewModel = HomeViewModel()
     private var cancellable: AnyCancellable?
     private var imagecancell: Set<AnyCancellable> = []
@@ -80,5 +79,18 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         cell.nameDate.text = (catalogImageData.photographer ?? "") + " | " + dateFormatter.string(from: catalogImageData.dateCreated)
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "showDetails", sender: nil)
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let selectedPath = catalogTable.indexPathForSelectedRow else { return }
+        
+        if let target = segue.destination as? DetailViewController {
+            if let item = viewModel.catalogFor(selectedPath.row){
+                target.catalogData =  item
+            }
+            
+        }
+    }
 }
 

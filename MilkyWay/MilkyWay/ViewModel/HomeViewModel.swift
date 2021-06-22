@@ -3,8 +3,8 @@ import Combine
 import UIKit.UIImage
 
 class HomeViewModel: ObservableObject {
-    // MARK:- Private properties
     
+    // MARK:- Private properties
     private var subscriptions: Set<AnyCancellable> = []
     private let client = Client()
     private var searchResults: CatalogResponse?

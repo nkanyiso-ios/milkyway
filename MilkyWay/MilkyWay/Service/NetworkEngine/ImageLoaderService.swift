@@ -15,9 +15,8 @@ final class ImageLoaderService: ImageLoaderServiceProtocol {
         return URLSession.shared.dataTaskPublisher(for: url)
             .map { (data, response) -> UIImage? in return UIImage(data: data) }
             .catch { error in return Just(nil) }
-            .handleEvents(receiveOutput: {[unowned self] image in
-                guard let image = image else { return }
-            })
+            .handleEvents(receiveOutput: { _ in
+               })
             .print("Image loading \(url):")
             .eraseToAnyPublisher()
     }

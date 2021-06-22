@@ -27,7 +27,6 @@
 		5CEDA4AB267B97820005C5E7 /* MilkyWayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEDA4AA267B97820005C5E7 /* MilkyWayTests.swift */; };
 		5CEDA4B6267B97820005C5E7 /* MilkyWayUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEDA4B5267B97820005C5E7 /* MilkyWayUITests.swift */; };
 		5CEDA4C9267B98210005C5E7 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEDA4C8267B98210005C5E7 /* HomeViewModel.swift */; };
-		5CEDA4CB267B98310005C5E7 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEDA4CA267B98300005C5E7 /* DetailViewModel.swift */; };
 		5CEDA4CD267B984D0005C5E7 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEDA4CC267B984D0005C5E7 /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -75,7 +74,6 @@
 		5CEDA4B5267B97820005C5E7 /* MilkyWayUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilkyWayUITests.swift; sourceTree = "<group>"; };
 		5CEDA4B7267B97820005C5E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5CEDA4C8267B98210005C5E7 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
-		5CEDA4CA267B98300005C5E7 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		5CEDA4CC267B984D0005C5E7 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -211,7 +209,6 @@
 			isa = PBXGroup;
 			children = (
 				5CEDA4C8267B98210005C5E7 /* HomeViewModel.swift */,
-				5CEDA4CA267B98300005C5E7 /* DetailViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -380,7 +377,6 @@
 				5CCA7520267E2AE400624A01 /* Environment.swift in Sources */,
 				5CCA752B267E2D7A00624A01 /* CatalogResponse.swift in Sources */,
 				5CEDA4CD267B984D0005C5E7 /* DetailViewController.swift in Sources */,
-				5CEDA4CB267B98310005C5E7 /* DetailViewModel.swift in Sources */,
 				5CCA7522267E2B2A00624A01 /* Client.swift in Sources */,
 				5CCA7529267E2CE700624A01 /* CatalogRequest.swift in Sources */,
 				5CDA011E267E65170071380E /* UIView.swift in Sources */,
