@@ -20,7 +20,7 @@ final class DetailViewController: UIViewController {
         updateDisplay()
     }
     
-   private func updateDisplay(){
+    private func updateDisplay(){
         guard let item = catalogData, let data = catalogData?.data.first else { self.showAlert(alertText: "Error", alertMessage: NSLocalizedString("Sorry no data found.", comment: ""))
             return
         }
@@ -30,6 +30,7 @@ final class DetailViewController: UIViewController {
         dateFormatter.dateFormat = App.dateFormat
         imageNameDate.text = (data.photographer ?? "") + " | " + dateFormatter.string(from: data.dateCreated)
         imageDescription.text = data.itemDescription
+        imageDescription.textContainer.lineFragmentPadding = 0
         guard let url = URL(string: item.links.first?.href ?? "" ) else { return }
         
         viewModel.downloadImage(imageUrl: url).sink(receiveValue: { image in

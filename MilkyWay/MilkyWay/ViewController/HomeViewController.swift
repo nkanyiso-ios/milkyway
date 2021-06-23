@@ -58,8 +58,9 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             guard let url = URL(string: urlString) else {
                 return cell
             }
-            
+            cell.startAnimating()
             viewModel.downloadImage(imageUrl: url).sink(receiveValue: { image in
+                cell.stopAnimating()
                 if (image != nil){
                     DispatchQueue.main.async { cell.updateImage(image ?? UIImage()) }
                 }
