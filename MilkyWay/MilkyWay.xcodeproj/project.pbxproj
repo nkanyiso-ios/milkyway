@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5CBC988C2683247400613B90 /* JsonData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CBC988B2683247400613B90 /* JsonData.swift */; };
 		5CCA7520267E2AE400624A01 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCA751F267E2AE400624A01 /* Environment.swift */; };
 		5CCA7522267E2B2A00624A01 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCA7521267E2B2A00624A01 /* Client.swift */; };
 		5CCA7524267E2B3D00624A01 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCA7523267E2B3D00624A01 /* Request.swift */; };
@@ -48,6 +49,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5CBC988B2683247400613B90 /* JsonData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonData.swift; sourceTree = "<group>"; };
 		5CCA751F267E2AE400624A01 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		5CCA7521267E2B2A00624A01 /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		5CCA7523267E2B3D00624A01 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 			children = (
 				5CEDA4AA267B97820005C5E7 /* MilkyWayTests.swift */,
 				5CEDA4AC267B97820005C5E7 /* Info.plist */,
+				5CBC988B2683247400613B90 /* JsonData.swift */,
 			);
 			path = MilkyWayTests;
 			sourceTree = "<group>";
@@ -392,6 +395,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5CBC988C2683247400613B90 /* JsonData.swift in Sources */,
 				5CEDA4AB267B97820005C5E7 /* MilkyWayTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
