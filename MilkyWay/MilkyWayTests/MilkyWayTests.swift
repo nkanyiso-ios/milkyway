@@ -1,33 +1,29 @@
-//
-//  MilkyWayTests.swift
-//  MilkyWayTests
-//
-//  Created by Nkanyiso Hlela on 2021/06/17.
-//
+
 
 import XCTest
+import Combine
 @testable import MilkyWay
 
+
 class MilkyWayTests: XCTestCase {
-
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    func testValidResponse(){
+        let request = GetAllCatalogImagesRequest()
+        guard let data = JsonData.validResponse.data(using: .utf8) else { return XCTFail("Invalid json data") }
+        do {
+            let response = try request.handle(response: data)
+            XCTAssertEqual(response.collection?.items.count, 1)
+        } catch let error {
+            XCTFail("Failed to handle data\(error.localizedDescription)")
+        }
+        
     }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    
+    func testInvalidResponse(){
+        let request = GetAllCatalogImagesRequest()
+        guard let data = JsonData.invalidResponse.data(using: .utf8) else { return XCTFail("Invalid json data") }
+        XCTAssertThrowsError(try request.handle(response: data)) { error in
+            XCTAssertTrue(error is DecodingError)
         }
     }
-
+    
 }
