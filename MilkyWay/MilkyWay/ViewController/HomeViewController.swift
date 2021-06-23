@@ -1,8 +1,7 @@
-
 import UIKit
 import Combine
 
-class HomeViewController: UIViewController {
+final class HomeViewController: UIViewController {
     
     // MARK: - Outlet(s)
     @IBOutlet private weak var catalogTable: UITableView! {
@@ -25,7 +24,7 @@ class HomeViewController: UIViewController {
         observeViewModelState()
     }
     
-    func observeViewModelState(){
+    private func observeViewModelState(){
         cancellable = viewModel.$state.sink(receiveValue: {[weak self] state in
             switch state {
             
@@ -59,37 +58,35 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             guard let url = URL(string: urlString) else {
                 return cell
             }
-            viewModel.laodImage(imageUrl: url).sink(receiveValue: { image in
+            
+            viewModel.downloadImage(imageUrl: url).sink(receiveValue: { image in
                 if (image != nil){
-                    DispatchQueue.main.async {
-                        
-                        cell.thumbnail.image = image
-                    }
+                    DispatchQueue.main.async { cell.updateImage(image ?? UIImage()) }
                 }
             }).store(in: &imagecancell)
         }
         return cell
     }
     
-    func bind(to catalogImageData: ItemData, cell: CatalogCell) {
-        
+    private func bind(to catalogImageData: ItemData, cell: CatalogCell) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = App.dateFormat
-        cell.title.text = catalogImageData.title
-        cell.nameDate.text = (catalogImageData.photographer ?? "") + " | " + dateFormatter.string(from: catalogImageData.dateCreated)
+        cell.configure(catalogImageData.title,
+                       nameDate: (catalogImageData.photographer ?? "") + " | " + dateFormatter.string(from: catalogImageData.dateCreated))
+        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "showDetails", sender: nil)
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let selectedPath = catalogTable.indexPathForSelectedRow else { return }
         
         if let target = segue.destination as? DetailViewController {
-            if let item = viewModel.catalogFor(selectedPath.row){
+            if let item = viewModel.catalogFor(selectedPath.row) {
                 target.catalogData =  item
             }
-            
         }
     }
 }

@@ -4,7 +4,7 @@ import Combine
 enum APIError: Error {
     case requestFailed(Int)
     case noDataFound
-
+    
 }
 extension APIError: LocalizedError {
     public var errorDescription: String? {

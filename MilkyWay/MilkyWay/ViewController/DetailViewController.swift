@@ -1,9 +1,7 @@
-
-
 import UIKit
 import Combine
 
-class DetailViewController: UIViewController {
+final class DetailViewController: UIViewController {
     
     // MARK: - Outlet(s)
     @IBOutlet private weak var catalogImage: UIImageView!
@@ -22,29 +20,20 @@ class DetailViewController: UIViewController {
         updateDisplay()
     }
     
-    func updateDisplay(){
-        
-        guard let item = catalogData, let data = catalogData?.data[0] else {
-            self.showAlert(alertText: "Error", alertMessage: NSLocalizedString("Sorry no data found.", comment: ""))
+   private func updateDisplay(){
+        guard let item = catalogData, let data = catalogData?.data.first else { self.showAlert(alertText: "Error", alertMessage: NSLocalizedString("Sorry no data found.", comment: ""))
             return
         }
+        
         imageTitle.text = data.title
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = App.dateFormat
         imageNameDate.text = (data.photographer ?? "") + " | " + dateFormatter.string(from: data.dateCreated)
         imageDescription.text = data.itemDescription
-        guard let url = URL(string: item.links[0].href ) else {
-            return 
-        }
-        viewModel.laodImage(imageUrl: url).sink(receiveValue: { image in
-            if (image != nil){
-                DispatchQueue.main.async {
-                    
-                    self.catalogImage.image = image
-                }
-            }
-        }).store(in: &cancellable)
+        guard let url = URL(string: item.links.first?.href ?? "" ) else { return }
         
+        viewModel.downloadImage(imageUrl: url).sink(receiveValue: { image in
+            if image != nil { DispatchQueue.main.async { self.catalogImage.image = image } }
+        }).store(in: &cancellable)
     }
-    
 }
